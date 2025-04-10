@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="invoice-form">
+            <h1>Invoice Generator</h1>
+            <div class="company-details">
+                <input type="text" id="companyName" placeholder="Company Name" value="Sonia Cleaning Services LLC">
+                <input type="text" id="companyStreet" placeholder="Street Address" value="04 Cedar Street">
+                <input type="text" id="companyCity" placeholder="City" value="Lebanon">
+                <input type="text" id="companyState" placeholder="State" value="NH">
+                <input type="text" id="companyZip" placeholder="ZIP" value="03766">
+                <input type="text" id="companyPhone" placeholder="Phone" value="6032669123">
+                <input type="email" id="companyEmail" placeholder="Email" value="sonia@ntecomp.com.br">
+            </div>
+
+            <div class="invoice-details">
+                <div class="invoice-header">
+                    <input type="text" id="invoiceNumber" placeholder="Invoice Number" value="INV00003">
+                    <input type="date" id="invoiceDate">
+                </div>
+            </div>
+
+            <div class="bill-to">
+                <h3>BILL TO</h3>
+                <input type="text" id="clientName" placeholder="Client Name">
+                <input type="text" id="clientStreet" placeholder="Street Address">
+                <input type="text" id="clientCity" placeholder="City">
+                <input type="text" id="clientState" placeholder="State">
+                <input type="text" id="clientZip" placeholder="ZIP">
+            </div>
+
+            <div class="items-section">
+                <table id="itemsTable">
+                    <thead>
+                        <tr>
+                            <th>DESCRIPTION</th>
+                            <th>RATE</th>
+                            <th>QTY</th>
+                            <th>AMOUNT</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsBody">
+                        <tr>
+                            <td><input type="text" placeholder="Item description"></td>
+                            <td><input type="number" placeholder="0.00" step="0.01"></td>
+                            <td><input type="number" placeholder="1" value="1"></td>
+                            <td><span class="amount">0.00</span></td>
+                            <td><button class="remove-item">×</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button id="addItem">Add Item</button>
+            </div>
+
+            <div class="totals">
+                <div class="total-row">
+                    <span>SUBTOTAL</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="total-row">
+                    <span>TAX (0%)</span>
+                    <span id="tax">$0.00</span>
+                </div>
+                <div class="total-row total">
+                    <span>TOTAL</span>
+                    <span id="total">$0.00</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="generatePDF">Generate PDF</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
