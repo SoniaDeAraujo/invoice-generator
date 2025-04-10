@@ -14,6 +14,7 @@ body {
 .container {
     max-width: 1000px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .invoice-form {
@@ -27,6 +28,7 @@ h1 {
     color: #333;
     margin-bottom: 2rem;
     text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .company-details, .bill-to {
@@ -41,10 +43,12 @@ input[type="email"],
 input[type="number"],
 input[type="date"] {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1rem;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .invoice-details {
@@ -61,6 +65,11 @@ h3 {
     grid-column: 1 / -1;
     color: #555;
     margin-bottom: 1rem;
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+}
+
+.items-section {
+    width: 100%;
 }
 
 table {
@@ -85,26 +94,37 @@ td {
 td input {
     width: 100%;
     border: none;
-    padding: 0.25rem;
+    padding: 0.5rem;
     font-size: 1rem;
+    background: transparent;
 }
 
 .remove-item {
     background: none;
     border: none;
     color: #dc3545;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     cursor: pointer;
+    padding: 0.5rem;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #addItem {
     background-color: #28a745;
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.25rem;
     border-radius: 4px;
     cursor: pointer;
     margin-top: 1rem;
+    font-size: 1rem;
+    min-height: 44px;
+    width: 100%;
+    max-width: 200px;
 }
 
 .totals {
@@ -116,7 +136,8 @@ td input {
 .total-row {
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 0;
+    padding: 0.75rem 0;
+    font-size: 1rem;
 }
 
 .total {
@@ -136,11 +157,14 @@ td input {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 2rem;
     border-radius: 4px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.2s;
+    min-height: 44px;
+    width: 100%;
+    max-width: 300px;
 }
 
 #generatePDF:hover {
@@ -148,6 +172,14 @@ td input {
 }
 
 @media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .invoice-form {
+        padding: 1.5rem;
+    }
+
     .company-details, .bill-to {
         grid-template-columns: 1fr;
     }
@@ -158,5 +190,113 @@ td input {
     
     .totals {
         width: 100%;
+    }
+
+    /* Table responsive styles */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ddd;
+        margin-bottom: 1rem;
+        background: #fff;
+        padding: 1rem;
+        border-radius: 4px;
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding: 1rem 0;
+        display: block;
+        min-height: 60px;
+    }
+
+    td:before {
+        content: attr(data-label);
+        display: block;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    td input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    td:last-child {
+        border-bottom: none;
+        min-height: 44px;
+    }
+
+    .remove-item {
+        margin: 0;
+        width: 100%;
+        justify-content: center;
+        background-color: #fff0f0;
+        border-radius: 4px;
+        color: #dc3545;
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    .remove-item:hover {
+        background-color: #ffe0e0;
+    }
+
+    table {
+        border: none;
+        min-width: unset;
+    }
+
+    #addItem {
+        max-width: none;
+        margin: 1rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .invoice-form {
+        padding: 1rem;
+        border-radius: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"] {
+        padding: 0.5rem;
+        font-size: 16px;
+    }
+
+    .total-row {
+        font-size: 0.9rem;
+    }
+
+    .total {
+        font-size: 1.1rem;
+    }
+
+    #generatePDF {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
     }
 } 
